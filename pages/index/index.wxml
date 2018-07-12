@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+  <map class = 'map'
+   id = "myMap"
+   latitude = "{{ latitude }}"
+   longitude = "{{ longitude }}"
+   scale='18'
+   markers='{{ markers }}'
+   bindregionchange = "bindregionchange"
+   bindmarkertap="markertap"
+   polyline = "polyline"
+   >
+    <cover-image class="cover-image" src="/resources/ding@3x.png"></cover-image>
+  </map>
+</view>
