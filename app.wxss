@@ -1,9 +1,51 @@
 /**app.wxss**/
 .container {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   box-sizing: border-box;
 } 
+.icon{
+  width: 70rpx;
+  height: 70rpx;
+}
+.flex{
+  display:flex;
+}
+.flex>view{
+  flex:1;
+}
+.flex.column {
+  flex-direction: column
+}
+.flex.middle{
+  align-items: center;
+}
+.flex.center{
+  justify-content: center;
+}
+.flex .auto{
+  flex: 0 auto;
+}
+.text-center{
+  text-align: center;
+}
+.section{
+  border-bottom: 1rpx solid #D8D8D8;
+}
+.section input{
+  outline:none;
+  border:none;
+  height: 3em;
+  padding-left: 1em;
+  box-sizing: border-box;
+  line-height: 3em;
+}
+.btn-area{
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.btn-area button{
+  border:none;
+  background: #FFD006;
+  box-shadow: 0 2px 4px 0 #F5D136;
+  border-radius: 8px;
+}
