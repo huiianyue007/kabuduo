@@ -1,4 +1,3 @@
-
 module.exports = {
   appName: "KBD-CLIENT",
   server: "https://pay.kabuduo.cn/qk_site", // 接口地址

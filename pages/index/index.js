@@ -56,6 +56,60 @@ Page({
         })
         return false
       }
+      // let arr = data.info.filter(item => {
+      //   let index = this.data.icons.findIndex(it => {
+      //     return it.shopMinRate === item.shopMinRate
+      //   })
+      //   return index == -1
+      // })
+      // if (arr.length) {
+      //   let functionArr = arr.map(item => {
+      //     let shopMinRate = item.shopMinRate.toString().split('.')
+      //     shopMinRate = shopMinRate[0] + (shopMinRate[1] || '0')
+
+      //     return new Promise(resolve => {
+      //       Ajax.downloadFile({
+      //         url: `img/shadow/sale_icon_${shopMinRate}@1x.png`
+      //       }).then(({ tempFilePath}) => {
+      //         item.tempFilePath = tempFilePath
+      //         resolve(item)
+      //       })
+      //     })
+      //   })
+      //   Promise.all(functionArr).then(res => {
+      //     this.data.icons = this.data.icons.concat(res.map(item => {
+      //       return {
+      //         shopMinRate: item.shopMinRate,
+      //         tempFilePath: item.tempFilePath
+      //       }
+      //     }))
+      //     this.setData({icons: this.data.icons})
+      //     this.setData({
+      //       markers: res.map(item => {
+      //         return {
+      //           id: item.id,
+      //           longitude: item.shopLongitude,
+      //           latitude: item.shopLatitude,
+      //           iconPath: item.tempFilePath
+      //         }
+      //       })
+      //     })
+      //   })
+      // } else {
+      //   let markers = data.info.map(item => {
+      //     let { tempFilePath } = this.data.icons.find(it => {
+      //       return it.shopMinRate === item.shopMinRate
+      //     })
+      //     return {
+      //       id: item.id,
+      //       longitude: item.shopLongitude,
+      //       latitude: item.shopLatitude,
+      //       iconPath: tempFilePath
+      //     }
+      //   })
+      //   this.setData({markers: markers})
+      //   console.log(this.data.markers)
+      // }
       data.info.forEach(item => {
         let marker = this.data.markers.find(it => {
           return it.longitude !== item.longitude && it.latitude !== item.latitude

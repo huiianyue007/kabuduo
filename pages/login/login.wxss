@@ -10,3 +10,7 @@
 .section .btn-area button{
   font-size: 12px;
 }
+.section .btn-area button.disabled{
+  background: #D8D8D8;
+  box-shadow: 0 2px 4px 0 #D8D8D8;
+}
