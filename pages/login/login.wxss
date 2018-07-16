@@ -1,0 +1,12 @@
+.btn-area{
+  margin-top: 100rpx;
+}
+.section .btn-area{
+  margin-top: 0rpx;
+}
+.section input{
+  flex: 1;
+}
+.section .btn-area button{
+  font-size: 12px;
+}

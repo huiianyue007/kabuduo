@@ -1,0 +1,18 @@
+<view class = "container">
+  <form bindsubmit="formSubmit">
+  <form bindsubmit="formsend">
+      <view class="section">
+        <input name="mobile" id = 'mobile' placeholder="请输入手机号" />
+      </view>
+      <view class="flex middle section">
+        <input name="verifyCode"type="{{ type }}" placeholder="请输入密码" />
+        <view class="auto btn-area">
+        <button formType="submit">{{ codeText }}</button>
+        </view>
+      </view>
+    </form>
+    <view class="btn-area">
+      <button formType="submit">登陆</button>
+    </view>
+  </form>
+</view>

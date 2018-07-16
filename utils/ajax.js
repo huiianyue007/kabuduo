@@ -11,8 +11,18 @@ Ajax.prototype.request = function (config = {}) {
     wx.request(config)
   })
 }
-Ajax.prototype.post = function (config = {}){
-  config.methods = 'post'
+Ajax.prototype.post = function (url, data = {}){
+  data = JSON.stringify(data).replace(/"/g, '').replace(/:/g, '=').replace(/,/g, '&')
+  data = '?' + data.substring(1, data.length - 1)
+  return this.request({
+    method: 'post',
+    url,
+    data
+  })
+}
+Ajax.prototype.get = function (url, config = {}) {
+  config.url = url
+  config.method = 'get'
   return this.request(config)
 }
 Ajax.prototype.downloadFile = function (config = {}) {

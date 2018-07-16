@@ -5,8 +5,6 @@
   position: relative;
 }
 .cover-image{
-  width: 70rpx;
-  height: 70rpx;
   position: absolute;
   top:0;
   bottom:0;
@@ -14,4 +12,24 @@
   left:0;
   margin:auto;
   z-index: 99;
+}
+.list{
+  position: absolute;
+  top:5rpx;
+  right:5rpx;
+}
+.me{
+  position: absolute;
+  top:5rpx;
+  left:5rpx;
+}
+.location{
+  position: absolute;
+  bottom:5rpx;
+  left:5rpx;
+}
+.qrcode{
+  position: absolute;
+  bottom:5rpx;
+  right:5rpx;
 }

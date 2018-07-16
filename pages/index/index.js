@@ -11,9 +11,9 @@ Page({
     icons: [],
     shadowIcon: [],
     swiperFlag: false,
-    polyline: []
+    icons: []
   },
-  onReady () {
+  onLoad () {
     this.mapCtx = wx.createMapContext('myMap')
     // wx.getLocation({
     //   type: 'gcj02',
@@ -21,61 +21,90 @@ Page({
     //   success: res => {
     //     this.setData({ latitude: res.latitude})
     //     this.setData({ longitude: res.longitude})
-    //   },
+    //   }
     // })
     this.setData({ "longitude": 116.2965745074327 })
     this.setData({ "latitude": 40.10560022710834 })
+    this.drawMarker({ 
+      "longitude": 116.2965745074327,
+      "latitude": 40.10560022710834
+    })
   },
   markertap(e) {
-    let marker = this.data.markers.find(item => {
-      return item.id = e.markerId
+    let index = this.data.markers.findIndex(item => {
+      return item.id === e.markerId
     })
-    this.setData({
-      polyline: {
-        points: [{
-          latitude: this.data.latitude,
-          longitude: this.data.longitude
-        }, {
-            latitude: marker.latitude,
-            longitude: marker.longitude
-        }]
+    let marker = this.data.markers[1]
+    this.data.markers[1] = this.data.markers[index]
+    this.data.markers[index] = marker
+    this.setData({marker: this.data.markers})
+  },
+  route (url) {
+    wx.navigateTo({
+      url: '../user/user',
+    })
+  },
+  drawMarker (location) {
+    Ajax.get('/shop/shop_list_chead', {
+      longitude: location.longitude,
+      latitude: location.latitude
+    }).then(({ data }) => {
+      if (data.info === '') {
+        wx.showToast({
+          title: '附近没有商家',
+          icon: 'none'
+        })
+        return false
       }
+      data.info.forEach(item => {
+        let marker = this.data.markers.find(it => {
+          return it.longitude !== item.longitude && it.latitude !== item.latitude
+        })
+        if (!marker) {
+          let Index = this.data.icons.find(it => {
+            return it.shopMinRate === shopMinRate
+          })
+          if (!Index) {
+            let shopMinRate = item.shopMinRate.toString().split('.')
+            shopMinRate = shopMinRate[0] + (shopMinRate[1] || '0')
+            Ajax.downloadFile({
+              url: `img/shadow/sale_icon_${shopMinRate}@1x.png`
+            }).then(({ tempFilePath }) => {
+              this.data.markers.push({
+                id: item.id,
+                longitude: item.shopLongitude,
+                latitude: item.shopLatitude,
+                iconPath: tempFilePath
+              })
+              this.data.icons.push({
+                shopMinRate: shopMinRate,
+                icons: tempFilePath
+              })
+              this.setData({ icons: this.data.icons })
+              this.setData({ markers: this.data.markers })
+            })
+          } else {
+            this.data.markers.push({
+              id: item.id,
+              longitude: item.shopLongitude,
+              latitude: item.shopLatitude,
+              iconPath: Index.icons
+            })
+            this.setData({ markers: this.data.markers })
+          }
+          }
+        })
+    }).catch(err => {
+      console.log(err)
     })
   },
   bindregionchange () {
     this.mapCtx.getCenterLocation({
       success: location => {
-        if (location.longitude !== this.data.longitude && location.latitude !== this.data.latitude) {
-          this.setData({ "longitude": location.longitude })
-          this.setData({ "latitude": location.latitude })
+        if (location.longitude === this.data.longitude && location.latitude === this.data.latitude) {
+          return false
         }
-        
-        Ajax.post({
-          url: '/shop/shop_list_chead',
-          data: {
-            longitude: location.longitude,
-            latitude: location.latitude
-          }
-        }).then(({ data }) => {
-          if (data.info === '') {
-            wx.showToast({
-              title: '附近没有商家',
-              icon: 'none'
-            })
-            return false
-          }
-          var markers = data.info.map(item => {
-            let shopMinRate = item.shopMinRate.toString().split('.')
-            return {
-              id: item.id,
-              longitude: item.shopLongitude,
-              latitude: item.shopLatitude
-            }
-          })
-          this.setData({markers: markers})
-        }).catch(err => {
-          console.log(err)
-        })
+        this.drawMarker(location)
       }
     })
   }

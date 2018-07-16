@@ -1,15 +1,10 @@
 <!--index.wxml-->
 <view class="container">
-  <map class = 'map'
-   id = "myMap"
-   latitude = "{{ latitude }}"
-   longitude = "{{ longitude }}"
-   scale='18'
-   markers='{{ markers }}'
-   bindregionchange = "bindregionchange"
-   bindmarkertap="markertap"
-   polyline = "polyline"
-   >
-    <cover-image class="cover-image" src="/resources/ding@3x.png"></cover-image>
+  <map class='map' id="myMap" latitude="{{ latitude }}" longitude="{{ longitude }}" scale='18' markers='{{ markers }}' bindregionchange="bindregionchange" bindmarkertap="markertap">
+    <cover-image src='/resources/me.png' class = 'icon me' bindtap = 'route'/>
+    <cover-image src='/resources/list.png' class = 'icon list'/>
+    <cover-image src='/resources/location.png' class = 'icon location'/>
+    <cover-image src='/resources/qrcode.png' class = 'icon qrcode'/>
+    <cover-image class="icon cover-image" src="/resources/ding@3x.png"></cover-image>
   </map>
 </view>

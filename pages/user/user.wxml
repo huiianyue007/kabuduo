@@ -1,0 +1,34 @@
+<!--logs.wxml-->
+<view class="container log-list">
+  <view class = 'flex header'>
+    <block wx:if = "{{ !isLogin }}">
+      <view bindtap='routeLogin'>
+        <image src = '/resources/default.png' class = 'portrait'></image>
+        <text>登陆/注册</text>
+      </view>
+    </block>
+    <block wx:else></block>
+    <image class = "auto icon" src = "/resources/homeSetting.png"></image>
+  </view>
+  <view class = "flex middle user">
+    <view class ="text-center">
+      <text class = "user_title">0</text><text>\n储值卡(张)</text>
+    </view>
+    <view class ="text-center">
+      <text  class = "user_title">0</text><text>\n总余额(元)</text>
+    </view>
+    <view class ="text-center">
+      <text class = "user_title">0</text><text>\n共享收益(元)</text>
+    </view>
+  </view>
+  <view class = "card">
+    <view class = "flex middle center card_li">
+      <image class = "auto card_icon" src = "/resources/mywallet.png"></image>
+      <text>储值卡</text>
+    </view>
+    <view class = "flex middle center card_li">
+      <image class = "auto card_icon" src = "/resources/mycard.png"></image>
+      <text>储值卡</text>
+      </view>
+  </view>
+</view>

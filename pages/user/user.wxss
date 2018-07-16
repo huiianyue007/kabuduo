@@ -1,0 +1,41 @@
+.log-list {
+  box-sizing: border-box;
+  font-family: PingFangSC-Medium;
+}
+.header {
+  width: 100%;
+  font-size: 20px;
+  color: #433D3D;
+  padding: 5px;
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.header .portrait{
+  height: 200rpx;
+  width:200rpx;
+  display: block;
+}
+.user{
+  margin: 5rpx 0;
+  height: 200rpx;
+  font-size: 12px;
+  color: #919191;
+  border-bottom: 10rpx solid #F6F6F6;
+}
+.user .user_title{
+  font-size: 20px;
+  color: #433D3D;
+}
+.card{
+  padding-top: 50rpx;
+}
+.card_li{
+  height: 120rpx;
+  font-size: 20px;
+  color: #433D3D;
+}
+.card_li .card_icon{
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 10rpx;
+}
